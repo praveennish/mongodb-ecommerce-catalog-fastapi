@@ -1,0 +1,46 @@
+# docker-compose.yml
+# This file defines the services for the MongoDB eCommerce catalog API using FastAPI.
+services:
+  api:
+    build: .
+    container_name: catalog_api
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
+      interval: 10s
+      timeout: 30s
+      retries: 10
+      start_period: 30s
+
+  mongo:
+    image: mongo:7.0
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: catalog_user
+      MONGO_INITDB_ROOT_PASSWORD: catalog_pass
+      MONGO_DB: catalog_api
+    ports:
+        - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./scripts/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./seed:/seed:ro
+
+  mongo-express:
+    image: mongo-express:1.0.2
+    container_name: mongo_express
+    restart: always
+    ports:
+      - "8082:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://catalog_user:catalog_pass@mongo:27017/
+      ME_CONFIG_BASICAUTH: "false"
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:

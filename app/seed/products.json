@@ -1,0 +1,36 @@
+[
+  {
+    "product_id": "P1001",
+    "name": "Wireless Headphones",
+    "description": "Over-ear ANC headphones",
+    "price": 129.99,
+    "currency": "USD",
+    "categories": ["electronics", "audio"],
+    "tags": ["wireless", "anc"],
+    "brand": "SoundMax",
+    "attributes": {"battery": "30h", "bluetooth": "5.3"},
+    "variants": [
+      {"sku": "P1001-BLK", "color": "black", "stock": 50, "price": 129.99},
+      {"sku": "P1001-WHT", "color": "white", "stock": 30, "price": 129.99}
+    ],
+    "product_type": "VARIANT",
+    "active": true
+  },
+  {
+    "product_id": "P2001",
+    "name": "Running Shoes",
+    "description": "Lightweight trainers",
+    "price": 89.5,
+    "currency": "USD",
+    "categories": ["apparel", "footwear"],
+    "tags": ["running", "mens"],
+    "brand": "FleetStep",
+    "attributes": {"material": "mesh", "drop": "8mm"},
+    "variants": [
+      {"sku": "P2001-42-BLU", "size": "42", "color": "blue", "stock": 25, "price": 89.5},
+      {"sku": "P2001-43-GRN", "size": "43", "color": "green", "stock": 20, "price": 89.5}
+    ],
+    "product_type": "VARIANT",
+    "active": true
+  }
+]
